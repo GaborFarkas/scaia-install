@@ -337,7 +337,8 @@ CREATE TABLE `permissions` (
 
 INSERT INTO `permissions` (`id`, `name`) VALUES
 (1, 'User'),
-(2, 'Administrator');
+(2, 'Administrator'),
+(3, 'Small admin');
 
 -- --------------------------------------------------------
 
@@ -459,15 +460,17 @@ CREATE TABLE `settings` (
   `spice_api` varchar(75) DEFAULT NULL,
   `announce` datetime DEFAULT NULL,
   `bleeding_edge` tinyint(1) DEFAULT 0,
-  `err_time` int(11) DEFAULT 15
+  `err_time` int(11) DEFAULT 15,
+  `mapserv_path` varchar(255) DEFAULT NULL,
+  `mapfile_prefix` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `css_sample`, `us_css1`, `us_css2`, `us_css3`, `site_name`, `language`, `track_guest`, `site_offline`, `force_pr`, `glogin`, `fblogin`, `gid`, `gsecret`, `gredirect`, `ghome`, `fbid`, `fbsecret`, `fbcallback`, `graph_ver`, `finalredir`, `req_cap`, `req_num`, `min_pw`, `max_pw`, `min_un`, `max_un`, `messaging`, `snooping`, `echouser`, `wys`, `change_un`, `backup_dest`, `backup_source`, `backup_table`, `msg_notification`, `permission_restriction`, `auto_assign_un`, `page_permission_restriction`, `msg_blocked_users`, `msg_default_to`, `notifications`, `notif_daylimit`, `recap_public`, `recap_private`, `page_default_private`, `navigation_type`, `copyright`, `custom_settings`, `system_announcement`, `twofa`, `force_notif`, `cron_ip`, `registration`, `join_vericode_expiry`, `reset_vericode_expiry`, `admin_verify`, `admin_verify_timeout`, `session_manager`, `template`, `saas`, `redirect_uri_after_login`, `show_tos`, `default_language`, `allow_language`, `spice_api`, `announce`, `bleeding_edge`, `err_time`) VALUES
-(1, 0, 0, 0, '../users/css/color_schemes/bootstrap.min.css', '../users/css/sb-admin.css', '../users/css/custom.css', 'UserSpice', 'en', 1, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 6, 30, 4, 30, 0, 1, 0, 1, 0, '/', 'everything', '', 0, 0, 0, 0, 0, 1, 0, 7, '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe', 1, 1, 'UserSpice', 1, '', 0, 0, 'off', 1, 24, 15, 1, 120, 0, 'standard', NULL, NULL, 1, 'en-US', 0, NULL, '2020-10-07 21:26:18', 0, 15);
+INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `css_sample`, `us_css1`, `us_css2`, `us_css3`, `site_name`, `language`, `track_guest`, `site_offline`, `force_pr`, `glogin`, `fblogin`, `gid`, `gsecret`, `gredirect`, `ghome`, `fbid`, `fbsecret`, `fbcallback`, `graph_ver`, `finalredir`, `req_cap`, `req_num`, `min_pw`, `max_pw`, `min_un`, `max_un`, `messaging`, `snooping`, `echouser`, `wys`, `change_un`, `backup_dest`, `backup_source`, `backup_table`, `msg_notification`, `permission_restriction`, `auto_assign_un`, `page_permission_restriction`, `msg_blocked_users`, `msg_default_to`, `notifications`, `notif_daylimit`, `recap_public`, `recap_private`, `page_default_private`, `navigation_type`, `copyright`, `custom_settings`, `system_announcement`, `twofa`, `force_notif`, `cron_ip`, `registration`, `join_vericode_expiry`, `reset_vericode_expiry`, `admin_verify`, `admin_verify_timeout`, `session_manager`, `template`, `saas`, `redirect_uri_after_login`, `show_tos`, `default_language`, `allow_language`, `spice_api`, `announce`, `bleeding_edge`, `err_time`, `mapserv_path`) VALUES
+(1, 0, 0, 0, '../users/css/color_schemes/bootstrap.min.css', '../users/css/sb-admin.css', '../users/css/custom.css', 'UserSpice', 'en', 1, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 6, 30, 4, 30, 0, 1, 0, 1, 0, '/', 'everything', '', 0, 0, 0, 0, 0, 1, 0, 7, '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe', 1, 1, 'UserSpice', 1, '', 0, 0, 'off', 1, 24, 15, 1, 120, 0, 'standard', NULL, NULL, 1, 'en-US', 0, NULL, '2020-10-07 21:26:18', 0, 15, '/cgi-bin/mapserv');
 
 -- --------------------------------------------------------
 
@@ -807,17 +810,24 @@ CREATE TABLE `us_management` (
 --
 
 INSERT INTO `us_management` (`id`, `page`, `view`, `feature`, `access`) VALUES
-(1, '_admin_manage_ip.php', 'ip', 'IP Whitelist/Blacklist', ''),
+(1, '_admin_manage_ip.php', 'ip', 'IP Whitelist/Blacklist', '3'),
 (2, '_admin_messages.php', 'messages', 'Messages', ''),
 (3, '_admin_nav.php', 'nav', 'Navigation', ''),
 (4, '_admin_nav_item.php', 'nav_item', 'Navigation', ''),
 (5, '_admin_notifications.php', 'notifications', 'Notifications', ''),
 (6, '_admin_page.php', 'page', 'Page Management', ''),
 (7, '_admin_pages.php', 'pages', 'Page Management', ''),
-(10, '_admin_security_logs.php', 'security_logs', 'Security Logs', ''),
+(10, '_admin_security_logs.php', 'security_logs', 'Security Logs', '3'),
 (11, '_admin_sessions.php', 'sessions', 'Session Management', ''),
 (12, '_admin_templates.php', 'templates', 'Templates', ''),
-(13, '_admin_tools_check_updates.php', 'updates', 'Check Updates', '');
+(13, '_admin_tools_check_updates.php', 'updates', 'Check Updates', ''),
+(14, '_admin_logs.php', 'logs', 'Logs', '3'),
+(15, '_admin_settings_general.php', 'general', 'General settings', '3'),
+(16, '_admin_settings_register.php', 'reg', 'Registration settings', '3'),
+(17, '_admin_users.php', 'users', 'User list', '3'),
+(18, '_admin_user.php', 'user', 'User settings', '3'),
+(19, '_admin_help.php', 'help', 'Help card', '3'),
+(20, '_admin_helps.php', 'helps', 'Help cards', '3');
 
 -- --------------------------------------------------------
 
@@ -893,6 +903,19 @@ CREATE TABLE `us_user_sessions` (
   `UserSessionLastPage` varchar(255) NOT NULL,
   `UserSessionEnded` tinyint(1) NOT NULL DEFAULT 0,
   `UserSessionEnded_Time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `help`
+--
+
+CREATE TABLE `help` (
+  `id` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1119,6 +1142,12 @@ ALTER TABLE `us_user_sessions`
   ADD PRIMARY KEY (`kUserSessionID`);
 
 --
+-- Indexes for table `help`
+--
+ALTER TABLE `help`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1331,6 +1360,12 @@ ALTER TABLE `us_saas_orgs`
 --
 ALTER TABLE `us_user_sessions`
   MODIFY `kUserSessionID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `help`
+--
+ALTER TABLE `help`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
