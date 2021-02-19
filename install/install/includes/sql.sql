@@ -918,6 +918,26 @@ CREATE TABLE `help` (
   `body` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp,
+  `name` varchar(255) NOT NULL,
+  `avail_mask` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
+  `public` tinyint(1) NOT NULL DEFAULT 0,
+  `archived` tinyint(1) NOT NULL DEFAULT 0,
+  `params` text DEFAULT NULL,
+  `message` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -1148,6 +1168,13 @@ ALTER TABLE `help`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`);
+
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1365,6 +1392,12 @@ ALTER TABLE `us_user_sessions`
 -- AUTO_INCREMENT for table `help`
 --
 ALTER TABLE `help`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
