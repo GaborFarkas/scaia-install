@@ -827,7 +827,9 @@ INSERT INTO `us_management` (`id`, `page`, `view`, `feature`, `access`) VALUES
 (17, '_admin_users.php', 'users', 'User list', '3'),
 (18, '_admin_user.php', 'user', 'User settings', '3'),
 (19, '_admin_help.php', 'help', 'Help card', '3'),
-(20, '_admin_helps.php', 'helps', 'Help cards', '3');
+(20, '_admin_helps.php', 'helps', 'Help cards', '3'),
+(21, '_admin_job.php', 'job', 'Sentinel Process', '3'),
+(22, '_admin_jobs.php', 'jobs', 'Sentinel Processes', '3');
 
 -- --------------------------------------------------------
 
