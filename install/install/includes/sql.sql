@@ -462,7 +462,9 @@ CREATE TABLE `settings` (
   `bleeding_edge` tinyint(1) DEFAULT 0,
   `err_time` int(11) DEFAULT 15,
   `mapserv_path` varchar(255) DEFAULT NULL,
-  `mapfile_prefix` varchar(255) DEFAULT NULL
+  `mapfile_prefix` varchar(255) DEFAULT NULL,
+  `raster_output` varchar(255) DEFAULT NULL,
+  `vector_output` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
