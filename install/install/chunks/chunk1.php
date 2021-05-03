@@ -14,7 +14,7 @@
 $db_table_prefix = "uc_";  //Old database prefix
 
 //adding more ids to this array allows people to access everything, whether offline or not. Use caution.
-$master_account = [1];
+$master_account = [];
 
 $currentPage = currentPage();
 
@@ -32,10 +32,3 @@ if(Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Confi
 
 //Check to see that user is logged in on a temporary password
 $user = new User();
-
-//Check to see that user is verified
-if($user->isLoggedIn()){
-	if($user->data()->email_verified == 0 && $currentPage != 'verify.php' && $currentPage != 'logout.php' && $currentPage != 'verify_thankyou.php'){
-		Redirect::to('users/verify.php');
-	}
-}
