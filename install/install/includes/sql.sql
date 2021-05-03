@@ -464,7 +464,8 @@ CREATE TABLE `settings` (
   `mapserv_path` varchar(255) DEFAULT NULL,
   `mapfile_prefix` varchar(255) DEFAULT NULL,
   `raster_output` varchar(255) DEFAULT NULL,
-  `vector_output` varchar(255) DEFAULT NULL
+  `vector_output` varchar(255) DEFAULT NULL,
+  `job_folder` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
